@@ -1,0 +1,14 @@
+{
+    "name": "pc41/projet_biblio",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Adrien"
+        }
+    ],
+    "require": {}
+}
