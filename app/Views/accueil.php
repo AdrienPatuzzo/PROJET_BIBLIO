@@ -3,6 +3,6 @@
 Mon contenu
 
 <?php
-$titre = "Le test";
+$titre = "Accueil";
 $content = ob_get_clean();
 require_once 'template.php';

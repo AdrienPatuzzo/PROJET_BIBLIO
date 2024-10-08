@@ -1,20 +1,22 @@
-<?php require_once './vendor/autoload.php' ?>
-<?php require './lib/init.php' ?>
-<?php require './lib/functions.php' ?>
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/app/lib/init.php';
+require __DIR__ . '/app/lib/functions.php';
+// debug(dirname(__DIR__)); 
+?>
 
 <?php
 try {
     // debug($_GET, $mode = 0);
     if (empty($_GET['page'])) {
-        require 'Views/accueil.php';
+        require 'app/Views/accueil.php';
     } else {
         $url = explode("/", filter_var($_GET['page'], FILTER_SANITIZE_URL));
         switch ($url[0]) {
             case 'livres':
-                require 'Views/livres.php';
-                break;
-            case 'test':
-                require 'Views/test.php';
+                require 'app/Views/livres.php'; // appeler controller
                 break;
         }
     }

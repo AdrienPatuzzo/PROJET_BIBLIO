@@ -2,25 +2,29 @@
 
 declare(strict_types=1);
 
-class Livre {
+namespace App\Models;
+
+
+class Livre
+{
     private int $id;
     private string $titre;
     private int $nbreDePages;
     private string $urlImage;
     private string $textAlternatif;
 
-    public function __contruct(
-        int $id, 
-        string $titre, 
-        int $nbreDePages, 
-        string $urlImage, 
+    public function __construct(
+        int $id,
+        string $titre,
+        int $nbreDePages,
+        string $urlImage,
         string $textAlternatif
-        ){
-        $this->id = $id; 
-        $this->titre = $titre; 
-        $this-> nbreDePages = $nbreDePages; 
-        $this-> urlImage = $urlImage; 
-        $this-> textAlternatif = $textAlternatif;
+    ) {
+        $this->id = $id;
+        $this->titre = $titre;
+        $this->nbreDePages = $nbreDePages;
+        $this->urlImage = $urlImage;
+        $this->textAlternatif = $textAlternatif;
     }
 
     /**
@@ -28,7 +32,8 @@ class Livre {
      *
      * @return int
      */
-    public function getId(): int {
+    public function getId(): int
+    {
         return $this->id;
     }
 
@@ -39,7 +44,8 @@ class Livre {
      *
      * @return self
      */
-    public function setId(int $id): self {
+    public function setId(int $id): self
+    {
         $this->id = $id;
         return $this;
     }
@@ -49,7 +55,8 @@ class Livre {
      *
      * @return string
      */
-    public function getTitre(): string {
+    public function getTitre(): string
+    {
         return $this->titre;
     }
 
@@ -60,7 +67,8 @@ class Livre {
      *
      * @return self
      */
-    public function setTitre(string $titre): self {
+    public function setTitre(string $titre): self
+    {
         $this->titre = $titre;
         return $this;
     }
@@ -70,7 +78,8 @@ class Livre {
      *
      * @return int
      */
-    public function getNbreDePages(): int {
+    public function getNbreDePages(): int
+    {
         return $this->nbreDePages;
     }
 
@@ -81,7 +90,8 @@ class Livre {
      *
      * @return self
      */
-    public function setNbreDePages(int $nbreDePages): self {
+    public function setNbreDePages(int $nbreDePages): self
+    {
         $this->nbreDePages = $nbreDePages;
         return $this;
     }
@@ -91,7 +101,8 @@ class Livre {
      *
      * @return string
      */
-    public function getUrlImage(): string {
+    public function getUrlImage(): string
+    {
         return $this->urlImage;
     }
 
@@ -102,7 +113,8 @@ class Livre {
      *
      * @return self
      */
-    public function setUrlImage(string $urlImage): self {
+    public function setUrlImage(string $urlImage): self
+    {
         $this->urlImage = $urlImage;
         return $this;
     }
@@ -112,7 +124,8 @@ class Livre {
      *
      * @return string
      */
-    public function getTextAlternatif(): string {
+    public function getTextAlternatif(): string
+    {
         return $this->textAlternatif;
     }
 
@@ -123,9 +136,9 @@ class Livre {
      *
      * @return self
      */
-    public function setTextAlternatif(string $textAlternatif): self {
+    public function setTextAlternatif(string $textAlternatif): self
+    {
         $this->textAlternatif = $textAlternatif;
         return $this;
     }
 }
-
