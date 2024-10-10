@@ -8,7 +8,7 @@ use PDO;
 use App\Models\Livre;
 use App\Service\AbstractConnexion;
 
-class livresRepository extends AbstractConnexion
+class LivresRepository extends AbstractConnexion
 {
     /**
      * Tableau de livres

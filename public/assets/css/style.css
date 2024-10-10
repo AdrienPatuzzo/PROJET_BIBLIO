@@ -6,8 +6,10 @@
 form {
     width: 100%;
     max-width: 781px;
+    margin: auto;
 }
 
 textarea {
     resize: none;
 }
+
