@@ -16,7 +16,7 @@
         <td class="align-middle"><img src="images/<?= $livre->getUrlImage(); ?>" style="height: 60px;" ; alt="texte-alternatif"></td>
         <td class="align-middle"><a href="<?= SITE_URL ?>livres/l/<?= $livre->getId() ?>"><?= $livre->getTitre() ?></a></td>
         <td class="align-middle"><?= $livre->getNbreDePages(); ?></td>
-        <td class="align-middle"><a href="#" class="btn btn-warning">Modifier</a> </td>
+        <td class="align-middle"><a href="<?= SITE_URL ?>livres/m/<?= $livre->getId() ?>" class="btn btn-warning">Modifier</a> </td>
         <td class="align-middle">
             <form method="post" action="<?= SITE_URL ?>livres/s/<?= $livre->getId() ?>" 
             onSubmit="return confirm('voulez-vous vraiment supprimer le livre <?= $livre->getTitre(); ?> ?');">

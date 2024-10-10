@@ -38,6 +38,26 @@ class LivreController{
         header('location: ' . SITE_URL . 'livres');
     }
 
+    public function modifierLivre($idLivre) {
+        $livre = $this->repositoryLivres->getLivreById($idLivre);
+        require '../app/views/modifierLivre.php';
+    }
+
+    public function validationModifierLivre () {
+        $idLivre = (int)$_POST['id_livre'];
+        $imageActuelle = $this->repositoryLivres->getLivreById($idLivre)->getUrlImage();
+        $imageUpload = $_FILES['image'];
+        $cheminImage = "image/$imageActuelle";
+        if($imageUpload['size'] > 0){
+            if (file_exists($cheminImage)) {
+                unlink("images/$cheminImage");
+            }
+            $imageActuelle = $this->ajoutImage($imageUpload, "images/");
+        }
+        $this->repositoryLivres->modificationLivreBdd($_POST['titre'], (int)$_POST['nbre-de-pages'], $imageActuelle, $_POST['text-alternatif'], $idLivre);
+        header('location: ' . SITE_URL . 'livres');
+    }
+
     public function supprimerLivre($idLivre) {
         $nomImage = $this->repositoryLivres->getLivreById($idLivre)->getUrlImage();
         $filename = "images/$nomImage";
@@ -47,8 +67,9 @@ class LivreController{
     }
 
     public function ajoutImage($image, $repertoire){
-        if (!isset($_FILES['image']) || empty($_FILES['image']))
+        if ($image['size'] === 0) {
             throw new Exception('Vous devez uploader une image');
+        }
 
         if(!file_exists($repertoire)) mkdir($repertoire, 0777);
 

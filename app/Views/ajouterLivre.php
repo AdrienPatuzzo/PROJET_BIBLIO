@@ -13,6 +13,7 @@
         <label for="text-alternatif">Texte alternatif : </label>
         <textarea class="form-control" id="text-alternatif" name="text-alternatif"></textarea>
     </div>
+    <img src="" id="image-preview" alt="">
     <div class="form-group my-4">
         <label for="image">Image : </label>
         <input class="form-control-file" type="file" id="image" name="image">
