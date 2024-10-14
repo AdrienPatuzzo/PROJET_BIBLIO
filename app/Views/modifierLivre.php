@@ -1,5 +1,7 @@
 <?php ob_start() ?>
 
+<?php require '../app/Views/showErreurs.php'; ?>
+
 <form method="POST" action="<?= SITE_URL ?>livres/mv" enctype="multipart/form-data">
     <div class="form-group my-4">
         <label for="titre">Titre : </label>

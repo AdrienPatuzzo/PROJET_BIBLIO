@@ -35,7 +35,12 @@ class LivreController{
     }
 
     public function validationAjoutLivre(){
-        $erreurs = $this->validationDonnees->valider(['titre' => ['required', 'match:/^[A-Z][A-Za-z\- ]+$/']], $_POST);
+        $erreurs = $this->validationDonnees->valider([
+            // 'titre' => ['min:3', 'required'],
+            'titre' => ['match:/^[A-A][a-zA-Z\- ]{3,25}$'],
+            'nbre-de-pages' => ['match:/^\d{1,10}$/'],
+            'text-alternatif' => ['match:/^[a-zA-Z.\-\'\"\s]{10,150}$/'] 
+        ], $_POST);
         
         if (is_array($erreurs) && count($erreurs) > 0) {
             $_SESSION['erreurs'][] = $erreurs;
@@ -55,6 +60,18 @@ class LivreController{
     }
 
     public function validationModifierLivre () {
+        $erreurs = $this->validationDonnees->valider([
+            // 'titre' => ['min:3', 'required'],
+            'titre' => ['match:/^[A-A][a-zA-Z\- ]{3,25}$/'],
+            'nbre-de-pages' => ['match:/^\d{1,10}$/'],
+            'text-alternatif' => ['match:/^[a-zA-Z.\-\'\"\s]{10,150}$/'] 
+        ], $_POST);
+        
+        if (is_array($erreurs) && count($erreurs) > 0) {
+            $_SESSION['erreurs'][] = $erreurs;
+            header('location: ' . SITE_URL . 'livres/a');
+            exit;
+        }
         $idLivre = (int)$_POST['id_livre'];
         $imageActuelle = $this->repositoryLivres->getLivreById($idLivre)->getUrlImage();
         $imageUpload = $_FILES['image'];

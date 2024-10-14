@@ -18,6 +18,9 @@ class ValidationDonnees{
                         case substr($regle, 0, 5) === 'match':
                             $this->match($key, $datas[$key], $regle);
                             break;
+                        case substr($regle, 0, 3) === 'min':
+                            $this->min($key, $datas[$key], $regle);
+                            break;
                     }
                 }
             }
@@ -36,10 +39,33 @@ class ValidationDonnees{
         $pattern = substr($regle, 6);
         if (!preg_match($pattern, $data)){
             switch ($name) {
+            case 'password':
+                $this->erreurs[$name][] = "Le mot de passe doit contenir minimum 12 caractères, minimum 1 caractère special, une majuscule et 1 chiffre!";
+                break;
+            case 'email':
+                $this->erreurs[$name][] = "L'adresse email est incorrect!";
+                break;
             case 'titre':
                 $this->erreurs[$name][] = "Le champ {$name} doit commencer par une lettre majuscule, contenir minimum 3 lettres et maximum 20 lettres, espaces et '-' autorisés !";
                 break;
+            case 'nbre-de-pages':
+                $this->erreurs[$name][] = "Le champ {$name} doit contenir uniquement des chiffres, [min: 1 - max:10] !";
+                break;
+            case 'text-alternatif':
+                $this->erreurs[$name][] = "Le champ {$name} doit commencer par une lettre majuscule, contenir minimum 10 caractères et maximum 150 caractères, espaces et '-'(tiret du 6), simple et doubles quotes autorisés !";
+                break;
             }
+        }
+    }
+
+    private function min(string $name, string $value, string $regle): void
+    {
+        // preg_match_all('/(\d+)/', $regle, $matches);
+        // $limit = $matches[0][0]; // => 3
+        $limit =  (int)substr($regle, 3);
+
+        if (strlen($value) < $limit) {
+            $this->erreurs[$name][] = "Le champ {$name} doit contenir un minimum de {$limit} caractères";
         }
     }
 
