@@ -32,6 +32,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= SITE_URL ?>livres">Livres</a>
                     </li>
+                    <?php if (!array_key_exists('utilisateur', $_SESSION)) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= SITE_URL ?>login">Login</a>
+                        </li>
+                    <?php else : ?>
+                            <li class="nav-item">
+                            <a class="nav-link" href="<?= SITE_URL ?>logout">Logout</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -41,7 +50,6 @@
         <h1 class="rounded border border-dark p-2 text-center text-white bg-info"><?= $titre ?></h1>
         <div class="d-flex flex-column justify-content-center"> <?= $content ?></div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

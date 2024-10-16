@@ -20,6 +20,7 @@
         <label for="image">Image : </label>
         <input class="form-control-file" type="file" id="image" name="image">
     </div>
+    <?= $csrfToken ?>
     <button class="btn btn-info">Créer livre</button>
 </form>
 

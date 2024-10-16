@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-class ValidationDonnees{
+class ValidationDonnees
+{
     private array $erreurs = [];
 
-    public function valider(array $regles, array $datas) {
+    public function valider(array $regles, array $datas)
+    {
         foreach ($regles as $key => $regleTab) {
             if (array_key_exists($key, $datas)) {
                 foreach ($regleTab as $regle) {
@@ -28,32 +30,34 @@ class ValidationDonnees{
         return $this->getErreurs();
     }
 
-    public function required(string $name, string|int|bool $data) {
+    public function required(string $name, string|int|bool $data)
+    {
         $value = trim($data);
         if (!isset($value) || empty($value) || is_null($value)) {
             $this->erreurs[$name][] = "Le champ {$name} est requis!";
         }
     }
 
-    public function match(string $name, string|int|bool $data, string $regle) {
+    public function match(string $name, string|int|bool $data, string $regle)
+    {
         $pattern = substr($regle, 6);
-        if (!preg_match($pattern, $data)){
+        if (!preg_match($pattern, $data)) {
             switch ($name) {
-            case 'password':
-                $this->erreurs[$name][] = "Le mot de passe doit contenir minimum 12 caractères, minimum 1 caractère special, une majuscule et 1 chiffre!";
-                break;
-            case 'email':
-                $this->erreurs[$name][] = "L'adresse email est incorrect!";
-                break;
-            case 'titre':
-                $this->erreurs[$name][] = "Le champ {$name} doit commencer par une lettre majuscule, contenir minimum 3 lettres et maximum 20 lettres, espaces et '-' autorisés !";
-                break;
-            case 'nbre-de-pages':
-                $this->erreurs[$name][] = "Le champ {$name} doit contenir uniquement des chiffres, [min: 1 - max:10] !";
-                break;
-            case 'text-alternatif':
-                $this->erreurs[$name][] = "Le champ {$name} doit commencer par une lettre majuscule, contenir minimum 10 caractères et maximum 150 caractères, espaces et '-'(tiret du 6), simple et doubles quotes autorisés !";
-                break;
+                case 'password':
+                    $this->erreurs[$name][] = "Le mot de passe doit contenir minimum 12 caractères, minimum 1 caractère special, une majuscule et 1 chiffre!";
+                    break;
+                case 'email':
+                    $this->erreurs[$name][] = "L'adresse email est incorrect!";
+                    break;
+                case 'titre':
+                    $this->erreurs[$name][] = "Le champ {$name} doit commencer par une lettre majuscule, contenir minimum 3 lettres et maximum 20 lettres, espaces et '-' autorisés !";
+                    break;
+                case 'nbre-de-pages':
+                    $this->erreurs[$name][] = "Le champ {$name} doit contenir uniquement des chiffres, [min: 1 - max:10] !";
+                    break;
+                case 'text-alternatif':
+                    $this->erreurs[$name][] = "Le champ {$name} doit commencer par une lettre majuscule, contenir minimum 10 caractères et maximum 150 caractères, espaces et '-'(tiret du 6), simple et doubles quotes autorisés !";
+                    break;
             }
         }
     }
@@ -74,7 +78,8 @@ class ValidationDonnees{
      *
      * @return array
      */
-    public function getErreurs(): array {
+    public function getErreurs(): array
+    {
         return $this->erreurs;
     }
 }

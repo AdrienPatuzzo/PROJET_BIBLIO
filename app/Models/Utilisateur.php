@@ -12,13 +12,13 @@ class Utilisateur
     private string $adresse_mail;
     private string $role;
 
-    public function __construct (
-        int $id_utilisateur, 
+    public function __construct(
+        int $id_utilisateur,
         string $identifiant,
         string $password,
         string $adresse_mail,
         string $role
-    ){
+    ) {
         $this->id_utilisateur = $id_utilisateur;
         $this->identifiant = $identifiant;
         $this->password = $password;
@@ -31,7 +31,8 @@ class Utilisateur
      *
      * @return int
      */
-    public function getIdUtilisateur(): int {
+    public function getIdUtilisateur(): int
+    {
         return $this->id_utilisateur;
     }
 
@@ -42,7 +43,8 @@ class Utilisateur
      *
      * @return self
      */
-    public function setIdUtilisateur(int $id_utilisateur): self {
+    public function setIdUtilisateur(int $id_utilisateur): self
+    {
         $this->id_utilisateur = $id_utilisateur;
         return $this;
     }
@@ -52,7 +54,8 @@ class Utilisateur
      *
      * @return string
      */
-    public function getIdentifiant(): string {
+    public function getIdentifiant(): string
+    {
         return $this->identifiant;
     }
 
@@ -63,7 +66,8 @@ class Utilisateur
      *
      * @return self
      */
-    public function setIdentifiant(string $identifiant): self {
+    public function setIdentifiant(string $identifiant): self
+    {
         $this->identifiant = $identifiant;
         return $this;
     }
@@ -73,7 +77,8 @@ class Utilisateur
      *
      * @return string
      */
-    public function getPassword(): string {
+    public function getPassword(): string
+    {
         return $this->password;
     }
 
@@ -84,7 +89,8 @@ class Utilisateur
      *
      * @return self
      */
-    public function setPassword(string $password): self {
+    public function setPassword(string $password): self
+    {
         $this->password = $password;
         return $this;
     }
@@ -94,7 +100,8 @@ class Utilisateur
      *
      * @return string
      */
-    public function getAdresseMail(): string {
+    public function getAdresseMail(): string
+    {
         return $this->adresse_mail;
     }
 
@@ -105,7 +112,8 @@ class Utilisateur
      *
      * @return self
      */
-    public function setAdresseMail(string $adresse_mail): self {
+    public function setAdresseMail(string $adresse_mail): self
+    {
         $this->adresse_mail = $adresse_mail;
         return $this;
     }
@@ -115,7 +123,8 @@ class Utilisateur
      *
      * @return string
      */
-    public function getRole(): string {
+    public function getRole(): string
+    {
         return $this->role;
     }
 
@@ -126,7 +135,8 @@ class Utilisateur
      *
      * @return self
      */
-    public function setRole(string $role): self {
+    public function setRole(string $role): self
+    {
         $this->role = $role;
         return $this;
     }

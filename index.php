@@ -1,59 +1,63 @@
 <?php
 
 declare(strict_types=1);
+
 session_start();
 use App\Controller\LivreController;
 use App\Controller\UtilisateurController;
-use \Dotenv\Dotenv;
+use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createMutable(__DIR__);
 $dotenv->load();
 
 require __DIR__ . '/app/lib/init.php';
-require __DIR__ . '/app/lib/functions.php'; 
+require __DIR__ . '/app/lib/functions.php';
 ?>
 <?php
 // echo password_hash('T2*azerqsdfwxcv', PASSWORD_BCRYPT);
-$livreController = new LivreController;
-$utilisateurController = new UtilisateurController ();
+$livreController = new LivreController();
+$utilisateurController = new UtilisateurController();
 try {
     if (empty($_GET['page'])) {
-        require 'app/Views/accueil.php';
+        $livreController->getAllLivres();
     } else {
         $url = explode("/", filter_var($_GET['page'], FILTER_SANITIZE_URL));
         switch ($url[0]) {
             case 'livres':
-                if(empty($url[1])){
+                if (empty($url[1])) {
                     $livreController->afficherLivres();
-                } else if ($url[1] === 'l'){
+                } elseif ($url[1] === 'l') {
                     $livreController->afficherUnLivre((int)$url[2]);
-                } else if ($url[1] === 'a'){
+                } elseif ($url[1] === 'a') {
                     $livreController->ajouterLivre();
-                } else if ($url[1] === 'av'){
+                } elseif ($url[1] === 'av') {
                     $livreController->validationAjoutLivre();
-                } else if ($url[1] === 'm'){
+                } elseif ($url[1] === 'm') {
                     $livreController->modifierLivre((int)$url[2]);
-                }else if ($url[1] === 'mv'){
+                } elseif ($url[1] === 'mv') {
                     $livreController->validationModifierLivre();
-                } else if ($url[1] === 's'){
+                } elseif ($url[1] === 's') {
                     $livreController->supprimerLivre((int) $url[2]);
                 } else {
                     throw new Exception("La page n'existe pas");
                 }
                 break;
             case 'login':
-                if(empty($url[1])){
+                if (empty($url[1])) {
                     $utilisateurController->afficherConnexion();
-                }  else if ($url[1] === 'v'){
+                } elseif ($url[1] === 'v') {
                     $utilisateurController->connexionValidation();
                 }
                 break;
+            case 'logout':
+                $utilisateurController->logout();
+                break;
             default:
-            throw new Exception("La page n'éxiste pas");
+                throw new Exception("La page n'éxiste pas");
             break;
         }
     }
 } catch (Exception $e) {
     $message = $e->getMessage();
-    require '../app/views/error404.php';
+    include '../app/views/error404.php';
 }

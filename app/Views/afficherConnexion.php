@@ -12,6 +12,7 @@
       <label for="exampleInputPassword1" class="form-label mt-4">Mot de passe</label>
       <input type="password" class="form-control" id="password" name="password" placeholder="Entrer votre mot de passe" autocomplete="off">
     </div>
+    <?= $csrfToken ?>
     <button type="submit" class="btn btn-primary">Se connecter</button>
   </fieldset>
 </form>

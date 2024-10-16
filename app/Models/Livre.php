@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-
 class Livre
 {
     private int $id;
@@ -12,19 +11,22 @@ class Livre
     private int $nbreDePages;
     private string $urlImage;
     private string $textAlternatif;
+    private int|null $idUtilisateur;
 
     public function __construct(
         int $id,
         string $titre,
         int $nbreDePages,
         string $urlImage,
-        string $textAlternatif
+        string $textAlternatif,
+        int|null $idUtilisateur
     ) {
         $this->id = $id;
         $this->titre = $titre;
         $this->nbreDePages = $nbreDePages;
         $this->urlImage = $urlImage;
         $this->textAlternatif = $textAlternatif;
+        $this->idUtilisateur = $idUtilisateur;
     }
 
     /**
@@ -139,6 +141,29 @@ class Livre
     public function setTextAlternatif(string $textAlternatif): self
     {
         $this->textAlternatif = $textAlternatif;
+        return $this;
+    }
+
+    /**
+     * Get the value of idUtilisateur
+     *
+     * @return int|null
+     */
+    public function getIdUtilisateur(): int|null
+    {
+        return $this->idUtilisateur;
+    }
+
+    /**
+     * Set the value of idUtilisateur
+     *
+     * @param int|null $idUtilisateur
+     *
+     * @return self
+     */
+    public function setIdUtilisateur(int|null $idUtilisateur): self
+    {
+        $this->idUtilisateur = $idUtilisateur;
         return $this;
     }
 }

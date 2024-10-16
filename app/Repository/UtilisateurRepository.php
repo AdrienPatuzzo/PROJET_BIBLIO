@@ -12,21 +12,23 @@ class UtilisateurRepository extends AbstractConnexion
 {
     private Utilisateur $utilisateur;
 
-    public function getUtilisateurByEmail(string $email){
+    public function getUtilisateurByEmail(string $email)
+    {
         $req = "SELECT * FROM utilisateur WHERE adresse_mail = ?";
         $stmt = $this->getConnexionBdd()->prepare($req);
         $stmt->execute([$email]);
         $utilisateurTab = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
-        if (!$utilisateurTab){
+        if (!$utilisateurTab) {
             return false;
         } else {
             $utilisateur = new Utilisateur(
-            $utilisateurTab['id_utilisateur'], 
-            $utilisateurTab['identifiant'],
-            $utilisateurTab['password'], 
-            $utilisateurTab['adresse_mail'], 
-            $utilisateurTab['role']);
+                $utilisateurTab['id_utilisateur'],
+                $utilisateurTab['identifiant'],
+                $utilisateurTab['password'],
+                $utilisateurTab['adresse_mail'],
+                $utilisateurTab['role']
+            );
             $this->setUtilisateur($utilisateur);
             return $this->getUtilisateur();
         }
@@ -37,7 +39,8 @@ class UtilisateurRepository extends AbstractConnexion
      *
      * @return Utilisateur
      */
-    public function getUtilisateur(): Utilisateur {
+    public function getUtilisateur(): Utilisateur
+    {
         return $this->utilisateur;
     }
 
@@ -48,7 +51,8 @@ class UtilisateurRepository extends AbstractConnexion
      *
      * @return self
      */
-    public function setUtilisateur(Utilisateur $utilisateur): self {
+    public function setUtilisateur(Utilisateur $utilisateur): self
+    {
         $this->utilisateur = $utilisateur;
         return $this;
     }

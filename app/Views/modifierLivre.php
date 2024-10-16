@@ -21,6 +21,7 @@
         <input class="form-control-file" type="file" id="image" name="image">
     </div>
     <input type="hidden" name="id_livre" value="<?= $livre->getId(); ?>">
+    <?= $csrfToken ?>
     <button class="btn btn-info">Modifier livre</button>
 </form>
 

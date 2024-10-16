@@ -1,7 +1,7 @@
 <?php ob_start() ?>
 
-<?php if(!$pasDeLivre) : ?>
-
+<?php if (!$pasDeLivre) : ?>
+    <?php require '../app/Views/showAlert.php'; ?>
 <table class="table test-center">
     <tr class="table-dark">
         <th>Image</th>
@@ -9,9 +9,9 @@
         <th>Nombre de pages</th>
         <th colspan="2">Actions</th>
     </tr>
-    <?php 
-    
-    foreach($livresTab as $livre) : ?>
+    <?php
+
+    foreach ($livresTab as $livre) : ?>
     <tr>
         <td class="align-middle"><img src="images/<?= $livre->getUrlImage(); ?>" style="height: 60px;" ; alt="texte-alternatif"></td>
         <td class="align-middle"><a href="<?= SITE_URL ?>livres/l/<?= $livre->getId() ?>"><?= $livre->getTitre() ?></a></td>
