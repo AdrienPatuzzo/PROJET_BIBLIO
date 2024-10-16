@@ -78,7 +78,7 @@ class LivreController
         $image = $_FILES['image'];
         $repertoire = "images/";
         $nomImage = Utils::ajoutImage($image, $repertoire);
-        $this->repositoryLivres->ajouterLivreBdd($_POST['titre'], (int)$_POST['nbre-de-pages'], $nomImage, $_POST['text-alternatif']);
+        $this->repositoryLivres->ajouterLivreBdd($_POST['titre'], (int)$_POST['nbre-de-pages'], $_POST['text-alternatif'], $nomImage);
         $_SESSION['alert'] = [
             "type" => "success",
             "message" => "Le livre $_POST[titre] a été ajouté avec un succès!"
