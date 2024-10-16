@@ -64,10 +64,10 @@ class LivreController
         Csrf::check();
         $this->utilisateurController->redirectLogin();
         $erreurs = $this->validationDonnees->valider([
-            // 'titre' => ['min:3', 'required'],
-            'titre' => ['match:/^[A-Z][a-zA-Z\- ]{3,25}$/'],
+            // 'titre' => ['min:3', 'required']
+            'titre' => ['match:/^[A-Z][a-zA-Zà-ÿÀ-Ÿ\-\' ]{3,25}$/'],
             'nbre-de-pages' => ['match:/^\d{1,10}$/'],
-            'text-alternatif' => ['match:/^[a-zA-Z.\-\'\"\s ]{10,150}$/']
+            'text-alternatif' => ['match:/^[a-zA-Zà-ÿÀ-Ÿ.\-\'\"\s]{10,150}$/']
         ], $_POST);
 
         if (is_array($erreurs) && count($erreurs) > 0) {
