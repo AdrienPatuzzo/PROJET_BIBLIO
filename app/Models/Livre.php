@@ -12,6 +12,7 @@ class Livre
     private string $urlImage;
     private string $textAlternatif;
     private int|null $idUtilisateur;
+    private string $uploader;
 
     public function __construct(
         int $id,
@@ -19,7 +20,8 @@ class Livre
         int $nbreDePages,
         string $urlImage,
         string $textAlternatif,
-        int|null $idUtilisateur
+        int|null $idUtilisateur,
+        string $uploader
     ) {
         $this->id = $id;
         $this->titre = $titre;
@@ -27,6 +29,7 @@ class Livre
         $this->urlImage = $urlImage;
         $this->textAlternatif = $textAlternatif;
         $this->idUtilisateur = $idUtilisateur;
+        $this->uploader = $uploader;
     }
 
     /**
@@ -164,6 +167,27 @@ class Livre
     public function setIdUtilisateur(int|null $idUtilisateur): self
     {
         $this->idUtilisateur = $idUtilisateur;
+        return $this;
+    }
+
+    /**
+     * Get the value of uploader
+     *
+     * @return string
+     */
+    public function getUploader(): string {
+        return $this->uploader;
+    }
+
+    /**
+     * Set the value of uploader
+     *
+     * @param string $uploader
+     *
+     * @return self
+     */
+    public function setUploader(string $uploader): self {
+        $this->uploader = $uploader;
         return $this;
     }
 }

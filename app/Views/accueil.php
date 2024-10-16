@@ -7,6 +7,9 @@ foreach ($livresAll as $livre) : ?>
         <h3 class="card-header"><?= $livre->getTitre() ?></h3>
         <img class="mx-auto mt-4" style="height: auto; width: 150px;" src="<?= SITE_URL ?>images/<?= $livre->getUrlImage(); ?>">
         <div class=" card-body">
+        <div class=" card-body">
+            <p>Uploader : <?= $livre->getUploader(); ?></p>
+        </div>
             <div class="card-body">
                 <a href="<?= SITE_URL ?>livres/l/<?= $livre->getId(); ?>">
                     En savoir plus ...

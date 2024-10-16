@@ -26,7 +26,7 @@ class LivreController
         if ($isAdmin) {
             $this->repositoryLivres->chargementLivresBdd();
         } elseif ($isUser) {
-            $this->repositoryLivres->getLivreByIdUtilisateur($_SESSION['utilisateur']['id_utilisateur']);
+            $this->repositoryLivres->getLivresByIdUtilisateur($_SESSION['utilisateur']['id_utilisateur']);
         }
     }
 
@@ -35,14 +35,21 @@ class LivreController
         $this->utilisateurController->redirectLogin();
         $livresTab = $this->repositoryLivres->getLivres();
         $pasDeLivre = (count($livresTab) > 0) ? false : true;
+        $_SESSION['alert'] = [
+            "type" => "success",
+            "message" => "Bienvenue " . $_SESSION['utilisateur']['identifiant']
+        ];
         require "../app/Views/livres.php";
     }
 
-    public function afficherUnLivre($idLivre)
-    {
-        $this->utilisateurController->redirectLogin();
+    public function afficherUnLivre($idLivre) {
         $livre = $this->repositoryLivres->getLivreById($idLivre);
-        ($livre !== null) ? require "../app/views/afficherlivre.php" : require "../app/Views/error404.php";
+        if ($livre !== null) {
+            require "../app/Views/afficherlivre.php";
+            exit;
+        }
+        $message = "Le livre avec l'ID : $idLivre n'existe pas";
+        require "../app/Views/error404.php";
     }
 
     public function ajouterLivre()

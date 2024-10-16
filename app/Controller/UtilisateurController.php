@@ -59,6 +59,7 @@ class UtilisateurController
                 $_SESSION['utilisateur']['id_utilisateur'] = $utilisateur->getIdUtilisateur();
                 $_SESSION['utilisateur']['email'] = $utilisateur->getAdresseMail();
                 $_SESSION['utilisateur']['role'] = $utilisateur->getRole();
+                $_SESSION['utilisateur']['identifiant'] = $utilisateur->getIdentifiant();
                 header('location: ' . SITE_URL . 'livres');
             }
         } else {
